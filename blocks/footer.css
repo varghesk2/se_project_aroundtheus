@@ -1,0 +1,13 @@
+.footer {
+    min-height: 18px;
+    max-width: 318px;
+    color: #545454;
+    margin-left: 300px;
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+
+.footer__copyright {
+    margin-top: 0;
+    margin-bottom: 0;
+}
