@@ -45,3 +45,9 @@
     overflow: hidden;
     max-width: 220px;
    }
+
+   @media screen and (max-width: 480px) {
+    .card {
+     background-position: center;
+    }
+}
