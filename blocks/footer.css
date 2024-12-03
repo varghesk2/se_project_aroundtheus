@@ -15,8 +15,9 @@
 @media screen and (max-width: 480px) {
 
    .footer{
-    margin-top: 2762px;
+    margin-top: 48px;
     margin-left: 19px;
+    margin-bottom: 36px;
    }
     .footer__copyright {
         line-height: 16.94px;
