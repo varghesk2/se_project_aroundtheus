@@ -15,16 +15,16 @@
     
     .profile__edit-button {
         background: transparent url(../images/editbuttonpencil.svg);
-        height: 24px;
-        width: 24px;
+        height: 18px;
+        width: 18px;
         grid-area: button;
-        margin-top: 15px;
         border-color: #fff;
         border-width: 1px;
         cursor: pointer;
         border-style: solid;
         background-repeat: no-repeat;
         background-position: center;
+        margin-left: 15px;
 
     }
 
@@ -86,6 +86,7 @@
     @media screen and (max-width: 480px) { 
         .profile{
             flex-direction: column;
+            max-width: 280px;
         } 
 
         .profile__title {
@@ -116,5 +117,5 @@
         .profile__add-button{
             margin: 0;
             width: 100%;
-        }
+        }   
     }
