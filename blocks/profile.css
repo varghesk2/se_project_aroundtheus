@@ -15,8 +15,8 @@
     
     .profile__edit-button {
         background: transparent url(../images/editbuttonpencil.svg);
-        height: 18px;
-        width: 18px;
+        height: 24px;
+        width: 24px;
         grid-area: button;
         border-color: #fff;
         border-width: 1px;
@@ -92,6 +92,7 @@
         .profile__title {
             font-size: 22px;
             line-height: 26.63px;
+            max-width: 220px;
         }
     
         .profile__info{
@@ -106,7 +107,8 @@
         }
     
         .profile__description{
-            width: 100px;
+            width: 100%;
+            max-width: 282px;
             text-align: center;
             margin-top: 14px;
             margin-bottom: 36px;
@@ -115,7 +117,13 @@
         }
     
         .profile__add-button{
+            max-width: 282px;
             margin: 0;
             width: 100%;
         }   
+
+        .profile__edit-button {
+            height: 18px;
+            width: 18px;
+        }
     }

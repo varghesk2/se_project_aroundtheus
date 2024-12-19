@@ -1,7 +1,7 @@
 .footer {
     color: #545454;
-    margin-top: 60px;
-    margin-bottom: 50px;
+    margin-top: 67px;
+    margin-bottom: 60px;
 }
 
 .footer__copyright {
@@ -16,12 +16,13 @@
 
    .footer{
     margin-top: 48px;
-    margin-left: 19px;
     margin-bottom: 36px;
    }
+   
     .footer__copyright {
         line-height: 16.94px;
         font-size: 14px;
+        margin-left: 19px;
     }
 
 

@@ -11,4 +11,8 @@
     height: 24px;
     padding: 32px 0 28px 27px; 
    }
+
+   .header {
+    padding: 0;
+   }
 }
