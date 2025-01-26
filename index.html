@@ -20,7 +20,7 @@
         />
         <div class="profile__info">
           <h1 class="profile__title">Jacques Costeau</h1>
-          <button class="profile__edit-button" type="button"></button>
+          <button class="profile__edit-button" id="profile__edit-button" type="button"></button>
           <p class="profile__description">Explorer</p>
         </div>
         <button class="profile__add-button" type="button"></button>
@@ -89,17 +89,45 @@
     </footer>
 
     <div style="height: 1000px;"></div>
-    <div class="modal">
+    <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button class="modal__clone">Edit Profile</button>
+        <button class="modal__close" type="button"></button>
+        <h3 class="modal__title">Edit Profile</h3>
         <p class="modal__heading"></p> 
         <form class="modal__form">
-          <input type="text" name="title">
-          <input type="text" name="description">
+          <input 
+          class="modal__input"
+          name="title" 
+          id="profile-title-input" 
+          placeholder= "name" 
+          type="text" 
+          />
+
+          <input 
+          class= "modal__input" 
+          name="description"
+          id="profile-description-input" 
+          placeholder="description"
+          type="text" 
+          />
+
           <button class="modal__button">Save</button>
         </form>
       </div>
     </div>
+
+
+<template>
+    <li class="card">
+      <img src="" alt=""/>
+      <div class="card__description">
+        <h2 class="card__title"></h2>
+        <button class="card__like-button" type="button"></button>
+      </div>
+    </li>
+  </template>
+
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>
