@@ -31,21 +31,20 @@ const initialCards = [
 
 ];
 
-const profileEditButton = document.querySelector ("#profile-edit-button");
-const profileEditModal = document.querySelector ('#profile-edit-modal');
-const profileEditCloseButton = profileEditModal.querySelector  (".modal__close");
-const profileTitle = document.querySelector ('.profile__title');
-const profileDescription = document.querySelector ('.profile__description');
-const profileTitleInput = document.querySelector ('#profile-title-input');
-const profileDescriptionInput = document.querySelector (
-    "#profile-description-input");
+const profileEditButton = document.querySelector("#profile__edit-button");
+const profileEditModal = document.querySelector('#profile-edit-modal');
+const profileEditCloseButton = profileEditModal.querySelector(".modal__close");
+const profileTitle = document.querySelector('.profile__title');
+const profileDescription = document.querySelector('.profile__description');
+const profileTitleInput = document.querySelector('#profile-title-input');
+const profileDescriptionInput = document.querySelector("#profile-description-input");
 
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 
 const cardListEl = document.querySelector('.card__list');
 
-const cardTemplate = 
-document.querySelector("#card-template").textContent.firstElementChild;
+/*const cardTemplate = 
+document.querySelector("#card-template").textContent.firstElementChild;*/
 
 
 function closePopup() {
@@ -61,7 +60,9 @@ function handleProfileEditSubmit(e) {
 
 
 
-profileEditButton.addEventListener ("click", () => {
+profileEditButton.addEventListener ("click", () =>
+     {
+console.log ("modal clicked")
 profileTitleInput.value = profileTitle.textcontent
 profileDescriptionInput.value = profileDescription.textcontent
 
