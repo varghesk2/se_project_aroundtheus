@@ -41,10 +41,10 @@ const profileDescriptionInput = document.querySelector("#profile-description-inp
 
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 
-const cardListEl = document.querySelector('.card__list');
+const cardListEl = document.querySelector('.cards__list');
 
 const cardTemplate = 
-document.querySelector("#card-template").textContent.firstElementChild;
+document.querySelector("#card-template").content.firstElementChild;
 
 
 function closePopup() {
@@ -69,15 +69,7 @@ profileDescriptionInput.value = profileDescription.textcontent
 profileEditModal.classList.add("modal_opened");
 });
 
-function getCardElement(cardData) {
-    const cardElement = cardTemplate.cloneNode(true);
-    const cardImageEl = cardElement.querySelector(".clone__image");
-    const cardTitleEl = cardElement.querySelector(".clone__title");
-    cardTitleEl.textContent = cardData.name;
-    return cardElement;
-}
 
- 
 profileEditCloseButton.addEventListener ("click", () => {
     profileEditModal.classList.remove("modal_opened");
     });
@@ -87,10 +79,11 @@ profileEditCloseButton.addEventListener ("click", () => {
     profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 
-    function getCardElement(data) {
+    function getCardElement(cardData) {
         const cardElement = cardTemplate.cloneNode(true);
-        const cardImageEl = cardElement.querySelector(".clone__image");
-        const cardTitleEl = cardElement.querySelector(".clone__Title");
+        const cardImageEl = cardElement.querySelector(".card__image");
+        const cardTitleEl = cardElement.querySelector(".card__title");
+        cardImageEl.src = cardData.link;
         cardTitleEl.textContent = cardData.name;
         return cardElement
       }
@@ -98,6 +91,5 @@ profileEditCloseButton.addEventListener ("click", () => {
       
       initialCards.forEach((cardData) => {
         const cardElement = getCardElement(cardData);
-      
         cardListEl.prepend(cardElement);
       });
