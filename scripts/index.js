@@ -70,10 +70,6 @@ profileEditCloseButton.addEventListener("click", () => {
   closePopup();
 });
 
-prof;
-
-prof;
-
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
