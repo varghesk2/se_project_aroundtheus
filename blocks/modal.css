@@ -24,6 +24,7 @@
     width: 430px;
     height: 330px;
     border-radius: 18px;
+    box-sizing: border-box;
 }
 
 .modal__close {
@@ -47,17 +48,19 @@
     line-height: 30px;
     color: black;
     margin: 0;
+    margin-bottom: 54px;
 }
 
 .modal__input {
 width: 100%;
 margin-bottom: 10px;
 height: 27px;
-margin-top: 40px;
 border: 0;
 border-bottom: 1px solid lightgray;
 font-weight: 400;
 font-size: 14px;
+padding: 0;
+margin-bottom: 30px;
 }
 
 .modal__button {
@@ -65,8 +68,12 @@ font-size: 14px;
     background-color: black;
     color: white;
     height: 50px;
-    margin-top: 70px;
+    margin-top: 48px;
 }
+
+.modal__input:last-of-type {
+    margin-bottom: 0;
+  }
 
 @media screen and (max-width: 480px) {
     .modal__title {
@@ -74,7 +81,25 @@ font-size: 14px;
     }
 
     .modal__button {
-        font-size: 14px;
+        font-size: 14px; 
+        width: 238px;
+        height: 46px;
     }
 
+    .modal__close {
+        height: 26px;
+        width: 26px;
+        right: 0;
+
     }
+
+    .modal__input {
+  
+    }
+
+    .modal__container{
+        padding: 22px;
+        
+    }
+}
+
