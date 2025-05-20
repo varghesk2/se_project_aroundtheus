@@ -31,7 +31,7 @@
           ></button>
           <p class="profile__description">Explorer</p>
         </div>
-        <button class="profile__add-button" id="add-button" type="button"></button>
+        <button class="profile__add-button" type="button"></button>
       </section>
 
       <section class="cards page__section">
@@ -67,34 +67,39 @@
       </div>
     </div>
 
-    <div class="modal" id="add-card-modal">
+    <div class="modal" id="modal__add-card">
       <div class="modal__container">
-        <button class="modal__close" id="modal-close" type="button"></button>
+        <button class="modal__close" type="button"></button>
         <h3 class="modal__title">New Place</h3>
-        <form class="modal__form" id="add-card-form">
+        <form class="modal__form">
           <input
-            class="modal__input_type_title"
+            class="modal__input"
             name="title"
             placeholder="Title"
             type="text"
+            id="card-title-input"
           />
-
           <input
-            class="modal__input_type_url"
+            class="modal__input"
             name="url"
             placeholder="Image URL"
             type="text"
+            id="card-url-input"
           />
-
-          <button class="button modal__button" type="submit">Create</button>
+          <button class="modal__button" type="submit">Create</button>
         </form>
       </div>
     </div>
-    <script defer src="./scripts/index.js"></script>
-    
+
+    <div class="modal" id= "modal__picture">
+        <button type="button" class="modal__picture-close"></button>
+        <img src="" alt="" class="modal__picture-img">
+        <p class="modal__picture-title"></p>
+        </div>
 
     <template id="card-template">
       <li class="card">
+        <button class="card__delete-button" type="button"></button>
         <img src="" alt="" class="card__image" />
         <div class="card__description">
           <h2 class="card__title"></h2>

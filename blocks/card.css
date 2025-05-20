@@ -27,7 +27,7 @@
    }
    
    .card__like-button {
-       background: url(../images/likebutton.svg);
+       background: url("../images/likebutton.svg");
        width: 21px;
        height: 18px;
        border: none;
@@ -38,6 +38,13 @@
     opacity: 0.5;
     }
 
+    .card__like-button_active {
+        background-image: url("../images/Union.svg");
+        width: 21px;
+        height: 18px;
+        color: red;
+    }
+
    .card__title {
     margin: 0;
     text-overflow: ellipsis;
@@ -45,6 +52,18 @@
     overflow: hidden;
     max-width: 220px;
    }
+
+   .card__delete-button {
+    background: transparent url("../images/Trash.svg") center no-repeat;
+    width: 18px;
+    height: 19.3px;
+    top: 30px;
+    left: 250px;
+    z-index: 1px;
+    border-style: hidden;
+    position: relative;
+    cursor: pointer;
+  }
 
    @media screen and (max-width: 480px) {
     .card {
