@@ -86,7 +86,7 @@ function handleProfileEditSubmit(e) {
 }
  
 function handleAddCardSubmit(e) {
-  evt.preventDefault();
+  e.preventDefault();
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard ({ name, link}, cardsWrap);
@@ -155,5 +155,7 @@ profileAddButton.addEventListener("click", () => openPopup(addModal));
 
 
 closeAddButton.addEventListener("click", () => closePopup(addModal));
+
+pictureClose.addEventListener("click", () => closePopup(pictureModal));
 
 
