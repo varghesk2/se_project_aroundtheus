@@ -88,6 +88,7 @@ function handleAddCardSubmit(e) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
   closePopup(addModal);
+  e.target.reset();
 }
 
 function getCardElement(cardData) {
@@ -135,11 +136,8 @@ profileEditCloseButton.addEventListener("click", () => {
 });
 
 initialCards.forEach((card) => {
-  const cardElement = getCardElement(card);
-  cardsWrap.prepend(cardElement);
+  renderCard(card, cardsWrap);
 });
-
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 addModalForm.addEventListener("submit", handleAddCardSubmit);
 
