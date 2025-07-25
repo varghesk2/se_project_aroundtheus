@@ -85,14 +85,20 @@
             placeholder="Title"
             type="text"
             id="card-title-input"
+            minlength="1"
+            maxlength="30"
+            required
           />
+          <span class="modal__error" id="card-input-error"></span>
           <input
             class="modal__input"
             name="url"
             placeholder="Image URL"
-            type="text"
+            type="url"
             id="card-url-input"
+            required
           />
+          <span class="modal__error" id="card-url-error"></span>
           <button class="modal__button" type="submit">Create</button>
         </form>
       </div>
@@ -101,7 +107,7 @@
     <div class="modal" id="modal__picture">
       <div class="modal__picture-container">
       <button type="button" class="modal__picture-close"></button>
-      <img src="" alt="" class="modal__picture-img" />
+      <img class="modal__picture-img" />
       <p class="modal__picture-title"></p>
     </div>
   </div>

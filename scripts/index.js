@@ -88,7 +88,6 @@ function handleAddCardSubmit(e) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
   closePopup(addModal);
-  e.target.reset();
 }
 
 function getCardElement(cardData) {
@@ -96,13 +95,13 @@ function getCardElement(cardData) {
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
-  const deletebutton = cardElement.querySelector(".card__delete-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
   });
 
-  deletebutton.addEventListener("click", () => {
+  deleteButton.addEventListener("click", () => {
     cardElement.remove();
   });
 
@@ -129,8 +128,6 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openPopup(profileEditModal);
-  disablesubmitbutton
-  validationConfig.inactiveButtonClass
 });
 
 profileEditCloseButton.addEventListener("click", () => {

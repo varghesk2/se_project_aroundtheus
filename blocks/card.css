@@ -59,7 +59,7 @@
     height: 19.3px;
     top: 30px;
     left: 250px;
-    z-index: 1px;
+    z-index: 1;
     border-style: hidden;
     position: relative;
     cursor: pointer;
