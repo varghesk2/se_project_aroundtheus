@@ -46,6 +46,7 @@
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">Edit Profile</h3>
         <form class="modal__form">
+          <label>
           <input
             class="modal__input"
             name="title"
@@ -57,7 +58,9 @@
             required
           />
           <div class="modal__error-wrapper"></div>
-          <span class="modal__error" id="profile-title-input-error"></span>
+         <span class="modal__error" id="profile-title-input-error"></span>
+         </label>
+         <label>
           <input
             class="modal__input"
             name="description"
@@ -69,6 +72,7 @@
             required
           />
           <span class="modal__error" id="profile-description-input-error"></span>
+         </label>
           <button class="modal__button" type="submit" disabled>Save</button>
         </form>
       </div>
@@ -79,6 +83,7 @@
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">New Place</h3>
         <form class="modal__form">
+          <label>
           <input
             class="modal__input"
             name="title"
@@ -90,6 +95,8 @@
             required
           />
           <span class="modal__error" id="card-input-error"></span>
+          </label>
+          <label>
           <input
             class="modal__input"
             name="url"
@@ -99,6 +106,7 @@
             required
           />
           <span class="modal__error" id="card-url-error"></span>
+          </label>
           <button class="modal__button" type="submit">Create</button>
         </form>
       </div>

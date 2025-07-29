@@ -234,6 +234,20 @@
   line-height: 100%;
 }
 
+.modal__button_disabled {
+    background: gray;
+    opacity: 15%;
+}
+
+.modal__input_type_error {
+   border-bottom: 1px solid #FF0000;
+   opacity: 60%;
+}
+
+.modal__error_visible {
+  color: #FF0000;
+  font-size: 12px;
+}
 
 .modal__error {
   font-size: 12px;
@@ -245,3 +259,4 @@
   left: 0;
   transition: opacity 0.3s;
 }
+
