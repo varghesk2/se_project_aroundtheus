@@ -125,8 +125,22 @@ function getCardElement(cardData) {
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 profileEditButton.addEventListener("click", () => {
+  // Fill inputs with current profile info
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
+
+  // Clear validation errors and reset button state
+  const inputEls = [...profileEditForm.querySelectorAll(config.inputSelector)];
+  const submitButton = profileEditForm.querySelector(
+    config.submitButtonSelector
+  );
+
+  inputEls.forEach((inputEl) => {
+    hideInputError(profileEditForm, inputEl, config);
+  });
+
+  toggleButtonState(inputEls, submitButton, config);
+
   openPopup(profileEditModal);
 });
 
@@ -140,7 +154,20 @@ initialCards.forEach((card) => {
 
 addModalForm.addEventListener("submit", handleAddCardSubmit);
 
-profileAddButton.addEventListener("click", () => openPopup(addModal));
+profileAddButton.addEventListener("click", () => {
+  addModalForm.reset(); // clear inputs
+
+  openPopup(addModal);
+
+  const inputEls = [...addModalForm.querySelectorAll(config.inputSelector)];
+  const submitButton = addModalForm.querySelector(config.submitButtonSelector);
+
+  inputEls.forEach((inputEl) => {
+    hideInputError(addModalForm, inputEl, config); // clear errors
+  });
+
+  toggleButtonState(inputEls, submitButton, config); // disable button
+});
 
 closeAddButton.addEventListener("click", () => closePopup(addModal));
 
