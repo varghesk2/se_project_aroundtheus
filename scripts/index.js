@@ -58,6 +58,8 @@ const pictureImage = document.querySelector(".modal__picture-img");
 const pictureTitle = document.querySelector(".modal__picture-title");
 const pictureClose = document.querySelector(".modal__picture-close");
 
+
+
 /* -------------------------------------------------------------------------- */
 /*                                  functions                                 */
 /* -------------------------------------------------------------------------- */
@@ -88,6 +90,27 @@ function handleAddCardSubmit(e) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
   closePopup(addModal);
+  e.target.reset();
+  clearValidationErrors(e.target);
+    const submitButton = e.target.querySelector('.form__submit');
+  disableButton(submitButton);
+  closePopup(addModal);
+}
+
+
+function disableSubmitButton(button, inactiveButtonClass) {
+  button.classList.add("button_disabled");
+  button.classList.add(inactiveButtonClass);
+  button.disabled = true;
+}
+
+function clearValidationErrors(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
+  inputList.forEach((inputElement) => {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.remove("form__input_type_error");
+    errorElement.textContent = "";
+  });
 }
 
 function getCardElement(cardData) {
@@ -116,6 +139,15 @@ function getCardElement(cardData) {
   cardImageEl.alt = cardData.link;
   cardTitleEl.textContent = cardData.name;
   return cardElement;
+}
+
+function handleEscKey(event) {
+  if (event.key === "Escape") {
+    const openModal = document.querySelector(".modal.modal_opened");
+    if (openModal) {
+      closePopup(openModal);
+    }
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -172,3 +204,13 @@ profileAddButton.addEventListener("click", () => {
 closeAddButton.addEventListener("click", () => closePopup(addModal));
 
 pictureClose.addEventListener("click", () => closePopup(pictureModal));
+
+document.addEventListener("keydown", handleEscKey);
+
+document.querySelectorAll(".modal").forEach((modal) => {
+  modal.addEventListener("mousedown", (event) => {
+    if (event.target === modal) {
+      closePopup(modal);
+    }
+  });
+});
