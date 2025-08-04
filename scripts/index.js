@@ -64,12 +64,15 @@ const pictureClose = document.querySelector(".modal__picture-close");
 /*                                  functions                                 */
 /* -------------------------------------------------------------------------- */
 
+
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscKey);
 }
 
 function openPopup(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscKey);
 }
 
 function renderCard(cardData, wrapper) {
@@ -89,16 +92,14 @@ function handleAddCardSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
-  closePopup(addModal);
-  e.target.reset();
-  clearValidationErrors(e.target);
-    const submitButton = e.target.querySelector('.form__submit');
-  disableButton(submitButton);
+
+
+  
   closePopup(addModal);
 }
 
 
-function disableSubmitButton(button, inactiveButtonClass) {
+function disableButton(button, inactiveButtonClass) {
   button.classList.add("button_disabled");
   button.classList.add(inactiveButtonClass);
   button.disabled = true;
@@ -205,7 +206,7 @@ closeAddButton.addEventListener("click", () => closePopup(addModal));
 
 pictureClose.addEventListener("click", () => closePopup(pictureModal));
 
-document.addEventListener("keydown", handleEscKey);
+
 
 document.querySelectorAll(".modal").forEach((modal) => {
   modal.addEventListener("mousedown", (event) => {
