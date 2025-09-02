@@ -246,12 +246,11 @@
   transition: opacity 0.3s;
   display: block;
   visibility: hidden;
-  color: #ff0000b2;
   font-weight: 500;
   font-size: 16px;
   line-height: 17.6px;
   margin-top: 8px;
- 
+  min-height: 18px;
  
 }
 
@@ -269,4 +268,4 @@
 .modal__label {
   position: relative;
   margin-bottom: 30px;
-}
+} 

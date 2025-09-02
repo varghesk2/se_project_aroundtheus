@@ -64,8 +64,6 @@ const cardData = [
   },
 ];
 
-const card = new Card(cardData, "#card-template")
-card.getView()
 
 const profileEditButton = document.querySelector("#profile__edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -112,6 +110,8 @@ function openPopup(modal) {
 function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData);
   wrapper.prepend(cardElement);
+  const card = new Card(cardData, "#card-template");
+  card.getView();
 }
 
 function handleProfileEditSubmit(e) {
