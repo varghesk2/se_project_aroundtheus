@@ -8,14 +8,14 @@ class FormValidator {
     this._form = formElement;
   }
 
-  _showInputError(input) {
+  _showInputError(inputElement) {
     const errorSpan = this._form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
     errorSpan.textContent = errorMessage;
     errorSpan.classList.add(this._errorClass);
   }
 
-  _setEventListeners() {
+  _setEventListeners(formElement, rest) {
     this.inputList = Array.from(
       this._form.querySelectorAll(this._inputSelector)
     );
@@ -57,7 +57,7 @@ class FormValidator {
     this._form.addEventListener("sumbit", (evt) => {
       evt.preventdefault();
     });
-    _setEventListeners(formElement, rest);
+    this._setEventListeners(formElement, rest);
   }
 }
 

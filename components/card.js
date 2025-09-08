@@ -28,6 +28,15 @@ class Card {
     this._modal.classList.add("modal_opened");
   }
 
+  _handleLikeIcon() {
+    this._likeButton.classList.toggle("card__like-button_active");
+  }
+
+  _handleDeleteCard() {
+    this._cardElement.remove();
+    this._cardElement = null;
+  }
+
   _setEventListeners() {
     this._element
       .querySelector(".card__image")
