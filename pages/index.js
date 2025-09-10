@@ -1,4 +1,6 @@
-import Card from "../components/card.js";
+import Card from "../components/Card.js";
+
+import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -31,39 +33,6 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-
-const cardData = [
-  {
-    name: "Yosemite Vally",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
-
 
 const profileEditButton = document.querySelector("#profile__edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -100,17 +69,19 @@ const validationConfig = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-const editProfileForm = document.querySelector("#edit-profile-form");
+
+const editProfileForm = document.querySelector(".modal__form");
+
 const editProfileValidator = new FormValidator(
   validationConfig,
   editProfileForm
 );
+
 editProfileValidator.enableValidation();
 
 const addCardForm = document.querySelector("#add-card-form");
 const addCardValidator = new FormValidator(validationConfig, addCardForm);
 addCardValidator.enableValidation();
-
 
 /* -------------------------------------------------------------------------- */
 /*                                  functions                                 */
@@ -122,13 +93,14 @@ function closePopup(modal) {
 }
 
 function openPopup(modal) {
-  modal.classList.add("modal_opened");   
+  modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscKey);
 }
- 
+
 function renderCard(cardData, wrapper) {
-  const card = new Card(cardData, "#card-template");
-  card.getView();
+  const card = new Card(cardData, "#card-template", "#modal__add-card");
+  const cardElement = card.getView();
+  wrapper.append(cardElement);
 }
 
 function handleProfileEditSubmit(e) {
@@ -146,7 +118,6 @@ function handleAddCardSubmit(e) {
 
   closePopup(addModal);
 }
-
 
 function handleEscKey(event) {
   if (event.key === "Escape") {

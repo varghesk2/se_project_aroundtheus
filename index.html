@@ -47,31 +47,34 @@
         <h3 class="modal__title">Edit Profile</h3>
         <form class="modal__form">
           <label class="modal__label">
-          <input
-            class="modal__input"
-            name="title"
-            id="profile-title-input"
-            placeholder="name"
-            type="text"
-            minlength="2"
-            maxlength="40"
-            required
-          />
-         <span class="modal__error" id="profile-title-input-error"></span>
-         </label>
-         <label class="modal__label">
-          <input
-            class="modal__input"
-            name="description"
-            id="profile-description-input"
-            placeholder="description"
-            type="text"
-            minlength="2"
-            maxlength="200"
-            required
-          />
-          <span class="modal__error" id="profile-description-input-error"></span>
-         </label>
+            <input
+              class="modal__input"
+              name="title"
+              id="profile-title-input"
+              placeholder="name"
+              type="text"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="modal__error" id="profile-title-input-error"></span>
+          </label>
+          <label class="modal__label">
+            <input
+              class="modal__input"
+              name="description"
+              id="profile-description-input"
+              placeholder="description"
+              type="text"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span
+              class="modal__error"
+              id="profile-description-input-error"
+            ></span>
+          </label>
           <button class="modal__button" type="submit" disabled>Save</button>
         </form>
       </div>
@@ -81,30 +84,30 @@
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">New Place</h3>
-        <form class="modal__form">
+        <form class="modal__form" id="add-card-form">
           <label class="modal__label">
-          <input
-            class="modal__input"
-            name="title"
-            placeholder="Title"
-            type="text"
-            id="card-title-input"
-            minlength="2"
-            maxlength="30"
-            required
-          />
-          <span class="modal__error" id="card-title-input-error"></span>
+            <input
+              class="modal__input"
+              name="title"
+              placeholder="Title"
+              type="text"
+              id="card-title-input"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="modal__error" id="card-title-input-error"></span>
           </label>
           <label class="modal__label">
-          <input
-            class="modal__input"
-            name="url"
-            placeholder="Image URL"
-            type="url"
-            id="card-url-input"
-            required
-          />
-          <span class="modal__error" id="card-url-input-error"></span>
+            <input
+              class="modal__input"
+              name="url"
+              placeholder="Image URL"
+              type="url"
+              id="card-url-input"
+              required
+            />
+            <span class="modal__error" id="card-url-input-error"></span>
           </label>
           <button class="modal__button" type="submit">Create</button>
         </form>
@@ -113,11 +116,11 @@
 
     <div class="modal" id="modal__picture">
       <div class="modal__picture-container">
-      <button type="button" class="modal__picture-close"></button>
-      <img class="modal__picture-img" />
-      <p class="modal__picture-title"></p>
+        <button type="button" class="modal__picture-close"></button>
+        <img class="modal__picture-img" />
+        <p class="modal__picture-title"></p>
+      </div>
     </div>
-  </div>
 
     <template id="card-template">
       <li class="card">
@@ -131,6 +134,5 @@
     </template>
 
     <script src="./pages/index.js" type="module"></script>
-  
   </body>
 </html>

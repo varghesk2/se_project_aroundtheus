@@ -15,7 +15,7 @@ class FormValidator {
     errorSpan.classList.add(this._errorClass);
   }
 
-  _setEventListeners(formElement, rest) {
+  _setEventListeners() {
     this.inputList = Array.from(
       this._form.querySelectorAll(this._inputSelector)
     );
@@ -57,8 +57,8 @@ class FormValidator {
     this._form.addEventListener("sumbit", (evt) => {
       evt.preventdefault();
     });
-    this._setEventListeners(formElement, rest);
+    this._setEventListeners();
   }
 }
 
-export default FormValidator; 
+export default FormValidator;

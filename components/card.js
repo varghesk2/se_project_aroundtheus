@@ -1,5 +1,3 @@
-export default Card
-
 class Card {
   constructor(data, cardSelector, modalSelector) {
     this._title = data.name;
@@ -7,6 +5,7 @@ class Card {
     this._cardSelector = cardSelector;
 
     this._modal = document.querySelector(modalSelector);
+    console.log(this._modal);
     this._modalImg = this._modal.querySelector(".modal__picture-img");
     this._modalTitle = this._modal.querySelector(".modal__picture-title");
   }
@@ -41,16 +40,20 @@ class Card {
     this._element
       .querySelector(".card__image")
       .addEventListener("click", () => this._handlePreviewPicture());
+    // .addEventListener("click", () => this._handleDeleteCard());
+    // .addEventListener("click", () => this._handleLikeIcon());
   }
 
-  generateCard() {
+  getView() {
     this._element = this._getTemplate();
     this._element.querySelector(".card__title").textContent = this._title;
     this._element.querySelector(".card__image").src = this._image;
     this._element.querySelector(".card__image").alt = this._title;
-
+    this._likeButton = this._element.querySelector(".card__like-button");
     this._setEventListeners();
 
     return this._element;
   }
 }
+
+export default Card;
