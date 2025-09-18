@@ -11,6 +11,7 @@ class FormValidator {
   _showInputError(inputElement) {
     const errorSpan = this._form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
+    const errorMessage = document.querySelector("card-title-input-error");
     errorSpan.textContent = errorMessage;
     errorSpan.classList.add(this._errorClass);
   }

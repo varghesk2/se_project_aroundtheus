@@ -62,25 +62,23 @@ const pictureImage = document.querySelector(".modal__picture-img");
 const pictureTitle = document.querySelector(".modal__picture-title");
 const pictureClose = document.querySelector(".modal__picture-close");
 
-const validationConfig = {
+const config = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
-};
-
-const editProfileForm = document.querySelector(".modal__form");
+};  
 
 const editProfileValidator = new FormValidator(
-  validationConfig,
-  editProfileForm
+  config,
+  profileEditForm
 );
 
 editProfileValidator.enableValidation();
 
 const addCardForm = document.querySelector("#add-card-form");
-const addCardValidator = new FormValidator(validationConfig, addCardForm);
+const addCardValidator = new FormValidator(config, addCardForm);
 addCardValidator.enableValidation();
 
 /* -------------------------------------------------------------------------- */
@@ -108,6 +106,22 @@ function handleProfileEditSubmit(e) {
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closePopup(profileEditModal);
+
+  profileAddButton.addEventListener("click", () => {
+    addModalForm.reset(); // clear inputs
+
+    openPopup(addModal);
+
+    const inputEls = [...addModalForm.querySelectorAll(config.inputSelector)];
+    const submitButton = addModalForm.querySelector(
+      config.submitButtonSelector
+    );
+    inputEls.forEach((inputEl) => {
+      hideInputError(addModalForm, inputEl, config); // clear errors
+    });
+
+    toggleButtonState(inputEls, submitButton, config); // disable button
+  });
 }
 
 function handleAddCardSubmit(e) {
@@ -163,21 +177,6 @@ initialCards.forEach((card) => {
 });
 
 addModalForm.addEventListener("submit", handleAddCardSubmit);
-
-profileAddButton.addEventListener("click", () => {
-  addModalForm.reset(); // clear inputs
-
-  openPopup(addModal);
-
-  const inputEls = [...addModalForm.querySelectorAll(config.inputSelector)];
-  const submitButton = addModalForm.querySelector(config.submitButtonSelector);
-
-  inputEls.forEach((inputEl) => {
-    hideInputError(addModalForm, inputEl, config); // clear errors
-  });
-
-  toggleButtonState(inputEls, submitButton, config); // disable button
-});
 
 closeAddButton.addEventListener("click", () => closePopup(addModal));
 
