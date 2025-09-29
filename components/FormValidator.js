@@ -12,7 +12,7 @@ class FormValidator {
     const errorSpan = this._form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
     const errorMessage = document.querySelector("card-title-input-error");
-    errorSpan.textContent = errorMessage;
+    errorSpan.textContent = inputElement.validationMessage;
     errorSpan.classList.add(this._errorClass);
   }
 
@@ -54,12 +54,25 @@ class FormValidator {
     return this.inputList.some((inputElement) => !inputElement.validity.valid);
   }
 
+  _hideInputError(inputElement) {
+    const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.remove(this._inputErrorClass);
+    errorElement.textContent = "";
+    errorElement.classList.remove(this._errorClass);
+  }
+
   enableValidation() {
-    this._form.addEventListener("sumbit", (evt) => {
-      evt.preventdefault();
-    });
+   this._form.addEventListener("submit", (evt) => { evt.preventDefault(); });
     this._setEventListeners();
   }
+
+  resetValidation() {
+    this.inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+    this._toggleButtonState();
+  }
 }
+
 
 export default FormValidator;

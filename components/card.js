@@ -20,6 +20,8 @@ class Card {
   }
 
   _handlePreviewPicture() {
+    if (!this._modal || !this._modalImg || !this._modalTitle) return;
+
     this._modalImg.src = this._image;
     this._modalImg.alt = this._title;
     this._modalTitle.textContent = this._title;
@@ -28,21 +30,24 @@ class Card {
   }
 
   _handleLikeIcon() {
-   this._element
-     .querySelector("card__like-button")
-     .addEventListener("click", () => this._handleLikeIcon());
+    this._likeButton.classList.toggle("card__like-button_active");
   }
 
   _handleDeleteCard() {
-   this._element
-     .querySelector(".card__delete-button")
-     .addEventListener("click", () => this._handleDeleteCard());
+    this._element.remove();
   }
 
   _setEventListeners() {
     this._element
       .querySelector(".card__image")
       .addEventListener("click", () => this._handlePreviewPicture());
+ 
+    this._likeButton.addEventListener("click", () => this._handleLikeIcon());
+
+    this._element
+      .querySelector(".card__delete-button")
+      .addEventListener("click", () => this._handleDeleteCard());
+
   }
 
   getView() {
