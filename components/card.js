@@ -1,3 +1,5 @@
+//Hello, so on my end, the file name has been capitalized ever since the first time I recieved the instruction to change it. but for some reason when I submit it through git it reads as lowercase still. I am not sure how to fix this//
+
 class Card {
   constructor(data, cardSelector, modalSelector) {
     this._title = data.name;
