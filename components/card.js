@@ -1,4 +1,4 @@
-//Thank you for the help!//
+//Hello, for some reason that didn't wprk either?//
 
 class Card {
   constructor(data, cardSelector, modalSelector) {
