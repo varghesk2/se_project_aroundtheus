@@ -1,4 +1,4 @@
-//Hello, so on my end, the file name has been capitalized ever since the first time I recieved the instruction to change it. but for some reason when I submit it through git it reads as lowercase still. I am not sure how to fix this//
+//Thank you for the help!//
 
 class Card {
   constructor(data, cardSelector, modalSelector) {
@@ -43,13 +43,12 @@ class Card {
     this._element
       .querySelector(".card__image")
       .addEventListener("click", () => this._handlePreviewPicture());
- 
+
     this._likeButton.addEventListener("click", () => this._handleLikeIcon());
 
     this._element
       .querySelector(".card__delete-button")
       .addEventListener("click", () => this._handleDeleteCard());
-
   }
 
   getView() {
