@@ -56,7 +56,6 @@ const addModalForm = addModal.querySelector(".modal__form");
 const closeAddButton = addModal.querySelector(".modal__close");
 const cardTitleInput = document.querySelector("#card-title-input");
 const cardUrlInput = document.querySelector("#card-url-input");
-
 const pictureModal = document.querySelector("#modal__picture");
 const pictureImage = document.querySelector(".modal__picture-img");
 const pictureTitle = document.querySelector(".modal__picture-title");
@@ -91,9 +90,6 @@ function closePopup(modal) {
 
 function openPopup(modal) {
   modal.classList.add("modal_opened");
-  console.log(addCardForm)
-  document.addEventListener("keydown", handleEscKey);
-  modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscKey);
 }
 
@@ -118,9 +114,10 @@ function handleAddCardSubmit(e) {
   addModalForm.reset(); // clear inputs
   const inputEls = [...addModalForm.querySelectorAll(config.inputSelector)];
   const submitButton = addModalForm.querySelector(config.submitButtonSelector);
-  inputEls.forEach((inputEl) => {
-    hideInputError(addModalForm, inputEl, config); // clear errors
-  });
+  // inputEls.forEach((inputEl) => {
+  //   editProfileValidator._hideInputError(addModalForm, inputEl, config); // clear errors
+  // });
+  //editProfileValidator.resetValidation()
   toggleButtonState(inputEls, submitButton, config); // disable button
   closePopup(addModal);
 }
