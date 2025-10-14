@@ -1,5 +1,4 @@
 import Card from "../components/Card.js";
-
 import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
@@ -77,8 +76,6 @@ const addCardForm = document.querySelector("#add-card-form");
 const addCardValidator = new FormValidator(config, addCardForm);
 addCardValidator.enableValidation();
 
-
-
 /* -------------------------------------------------------------------------- */
 /*                                  functions                                 */
 /* -------------------------------------------------------------------------- */
@@ -148,9 +145,7 @@ profileEditButton.addEventListener("click", () => {
     config.submitButtonSelector
   );
 
-  inputEls.forEach((inputEl) => {
-   
-  });
+  inputEls.forEach((inputEl) => {});
 
   editProfileValidator.resetValidation();
   openPopup(profileEditModal);
