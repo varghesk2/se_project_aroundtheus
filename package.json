@@ -1,11 +1,11 @@
 {
-  "name": "Insert project name",
+  "name": "around-the-us",
   "version": "0.1.0",
   "description": "Describe the project",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
-    "dev": "webpack serve --mode development"
+    "build": "rimraf dist && webpack --mode production",
+    "dev": "webpack serve --mode development --open"
   },
   "author": "TripleTen",
   "license": "ISC",
@@ -22,7 +22,8 @@
     "postcss-loader": "7.0.1",
     "webpack": "5.76.0",
     "webpack-cli": "4.10.0",
-    "webpack-dev-server": "4.9.3"
+    "webpack-dev-server": "4.9.3",
+    "rimraf": "^5.0.0"
   },
   "dependencies": {
     "core-js": "3.23.5"
