@@ -1,37 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-
-const initialCards = [
-  {
-    name: "Yosemite Vally",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
+import "./index.css";
 
 const profileEditButton = document.querySelector("#profile__edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -59,14 +28,6 @@ const pictureModal = document.querySelector("#modal__picture");
 const pictureImage = document.querySelector(".modal__picture-img");
 const pictureTitle = document.querySelector(".modal__picture-title");
 const pictureClose = document.querySelector(".modal__picture-close");
-
-const config = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
 
 const editProfileValidator = new FormValidator(config, profileEditForm);
 
@@ -108,14 +69,10 @@ function handleAddCardSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
-  addModalForm.reset(); // clear inputs
+  addModalForm.reset(); 
   const inputEls = [...addModalForm.querySelectorAll(config.inputSelector)];
   const submitButton = addModalForm.querySelector(config.submitButtonSelector);
-  // inputEls.forEach((inputEl) => {
-  //   editProfileValidator._hideInputError(addModalForm, inputEl, config); // clear errors
-  // });
-  //editProfileValidator.resetValidation()
-  toggleButtonState(inputEls, submitButton, config); // disable button
+  toggleButtonState(inputEls, submitButton, config); 
   closePopup(addModal);
 }
 
@@ -135,11 +92,9 @@ function handleEscKey(event) {
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 profileEditButton.addEventListener("click", () => {
-  // Fill inputs with current profile info
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
 
-  // Clear validation errors and reset button state
   const inputEls = [...profileEditForm.querySelectorAll(config.inputSelector)];
   const submitButton = profileEditForm.querySelector(
     config.submitButtonSelector
