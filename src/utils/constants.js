@@ -35,3 +35,30 @@ export const validationConfig = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+
+const profileEditButton = document.querySelector("#profile__edit-button");
+const profileEditModal = document.querySelector("#profile-edit-modal");
+const profileEditCloseButton = profileEditModal.querySelector(".modal__close");
+const profileAddButton = document.querySelector(".profile__add-button");
+const profileTitle = document.querySelector(".profile__title");
+const profileDescription = document.querySelector(".profile__description");
+const profileTitleInput = document.querySelector("#profile-title-input");
+const profileDescriptionInput = document.querySelector(
+  "#profile-description-input"
+);
+const profileEditForm = document.querySelector("#profile-edit-modal");
+const addCardForm = document.querySelector("#modal__add-card");
+
+export {
+  profileEditButton,
+  profileEditModal,
+  profileEditCloseButton,
+  profileAddButton,
+  profileTitle,
+  profileDescription,
+  profileTitleInput,
+  profileDescriptionInput,
+  profileEditForm,
+  addCardForm,
+};
+

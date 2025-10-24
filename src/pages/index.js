@@ -1,19 +1,22 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "./index.css";
+import {
+  initialCards,
+  validationConfig,
+  profileEditButton,
+  profileTitleInput,
+  profileDescriptionInput,
+  profileEditForm,
+  addCardForm,
+  profileEditModal,
+  profileEditCloseButton,
+  profileAddButton,
+  profileTitle,
+  profileDescription,
+} from "../utils/constants.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 
-const profileEditButton = document.querySelector("#profile__edit-button");
-const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileEditCloseButton = profileEditModal.querySelector(".modal__close");
-const profileAddButton = document.querySelector(".profile__add-button");
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
-const profileTitleInput = document.querySelector("#profile-title-input");
-const profileDescriptionInput = document.querySelector(
-  "#profile-description-input"
-);
-
-const profileEditForm = profileEditModal.querySelector(".modal__form");
 
 const cardsWrap = document.querySelector(".cards__list");
 
@@ -29,12 +32,11 @@ const pictureImage = document.querySelector(".modal__picture-img");
 const pictureTitle = document.querySelector(".modal__picture-title");
 const pictureClose = document.querySelector(".modal__picture-close");
 
-const editProfileValidator = new FormValidator(config, profileEditForm);
+const editProfileValidator = new FormValidator(validationConfig, profileEditModal);
 
 editProfileValidator.enableValidation();
 
-const addCardForm = document.querySelector("#add-card-form");
-const addCardValidator = new FormValidator(config, addCardForm);
+const addCardValidator = new FormValidator(validationConfig, addCardForm);
 addCardValidator.enableValidation();
 
 /* -------------------------------------------------------------------------- */
@@ -95,9 +97,9 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
 
-  const inputEls = [...profileEditForm.querySelectorAll(config.inputSelector)];
+  const inputEls = [...profileEditForm.querySelectorAll(validationConfig.inputSelector)];
   const submitButton = profileEditForm.querySelector(
-    config.submitButtonSelector
+    validationConfig.submitButtonSelector
   );
 
   inputEls.forEach((inputEl) => {});
