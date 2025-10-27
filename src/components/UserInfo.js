@@ -1,27 +1,18 @@
-import UserInfo from "./UserInfo.js";
+export default class UserInfo {
+  constructor({ nameSelector, descriptionSelector }) {
+    this._nameElement = document.querySelector(nameSelector);
+    this._descriptionElement = document.querySelector(descriptionSelector);
+  }
+  
+  getUserInfo() {
+    return {
+      name: this._nameElement.textContent,
+      description: this._descriptionElement.textContent,
+    };
+  }
 
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  descriptionSelector: ".profile__description",
-});
-
-profileEditButton.addEventListener("click", () => {
-  const currentUser = userInfo.getUserInfo();
-
-  profileTitleInput.value = currentUser.name;
-  profileDescriptionInput.value = currentUser.description;
-
-  editFormValidator.resetValidation();
-  openPopup(profileEditModal);
-});
-
-profileEditForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-
-  userInfo.setUserInfo({
-    name: profileTitleInput.value,
-    description: profileDescriptionInput.value,
-  });
-
-  closePopup(profileEditModal);
-});
+  setUserInfo({ name, description }) {
+    if (name) this._nameElement.textContent = name;
+    if (description) this._descriptionElement.textContent = description;
+  }
+}

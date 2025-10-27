@@ -1,5 +1,3 @@
-//Hello, for some reason that didn't wprk either?//
-
 class Card {
   constructor(data, cardSelector, modalSelector) {
     this._title = data.name;

@@ -16,7 +16,9 @@ import {
   profileDescription,
 } from "../utils/constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
 
 const cardsWrap = document.querySelector(".cards__list");
 
@@ -133,3 +135,67 @@ document.querySelectorAll(".modal").forEach((modal) => {
     }
   });
 });
+
+
+/* -------------------------------------------------------------------------- */
+/*                               instances                                    */
+/* -------------------------------------------------------------------------- */
+
+
+
+
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__description",
+});
+
+profileEditButton.addEventListener("click", () => {
+  const currentUser = userInfo.getUserInfo();
+  profileTitleInput.value = currentUser.name;
+  profileDescriptionInput.value = currentUser.description;
+
+  editFormValidator.resetValidation();
+  openPopup(profileEditModal);
+});
+
+profileEditForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+
+  userInfo.setUserInfo({
+    name: profileTitleInput.value,
+    description: profileDescriptionInput.value,
+  });
+
+  closePopup(profileEditModal);
+});
+
+const imagePopup = new PopupWithImage("#modal__picture");
+imagePopup.setEventListeners();
+
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const cardElement = createCard(item);
+      cardSection.addItem(cardElement);
+    },
+  },
+  ".cards__list"
+);
+cardSection.renderItems();
+
+const editProfilePopup = new PopupWithForm("#profile-edit-modal", (formData) => {
+  userInfo.setUserInfo({
+    name: formData.title,
+    job: formData.description,
+  });
+  editProfilePopup.close();
+});
+editProfilePopup.setEventListeners();
+
+const addCardPopup = new PopupWithForm("#modal__add-card", (formData) => {
+  const newCard = createCard({ name: formData.title, link: formData.url });
+  cardSection.addItem(newCard);
+  addCardPopup.close();
+});
+addCardPopup.setEventListeners();
