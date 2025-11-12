@@ -1,13 +1,10 @@
 class Card {
-  constructor(data, cardSelector, modalSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._title = data.name;
     this._image = data.link;
     this._cardSelector = cardSelector;
 
-    this._modal = document.querySelector(modalSelector);
-    console.log(this._modal);
-    this._modalImg = this._modal.querySelector(".modal__picture-img");
-    this._modalTitle = this._modal.querySelector(".modal__picture-title");
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -19,15 +16,6 @@ class Card {
     return cardElement;
   }
 
-  _handlePreviewPicture() {
-    if (!this._modal || !this._modalImg || !this._modalTitle) return;
-
-    this._modalImg.src = this._image;
-    this._modalImg.alt = this._title;
-    this._modalTitle.textContent = this._title;
-
-    this._modal.classList.add("modal_opened");
-  }
 
   _handleLikeIcon() {
     this._likeButton.classList.toggle("card__like-button_active");
@@ -40,8 +28,9 @@ class Card {
   _setEventListeners() {
     this._element
       .querySelector(".card__image")
-      .addEventListener("click", () => this._handlePreviewPicture());
-
+      .addEventListener("click", () =>
+        this._handleCardClick({ name: this._title, link: this._image })
+      );
     this._likeButton.addEventListener("click", () => this._handleLikeIcon());
 
     this._element

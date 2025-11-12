@@ -9,11 +9,20 @@ export default class PopupWithImage extends Popup {
   }
 
   open(data) {
-
     this._imageElement.src = data.link;
     this._imageElement.alt = data.name;
     this._captionElement.textContent = data.name;
 
     super.open();
+  }
+
+  _handlePreviewPicture() {
+    if (!this._modal || !this._modalImg || !this._modalTitle) return;
+
+    this._modalImg.src = this._image;
+    this._modalImg.alt = this._title;
+    this._modalTitle.textContent = this._title;
+
+    this._modal.classList.add("modal_opened");
   }
 }
