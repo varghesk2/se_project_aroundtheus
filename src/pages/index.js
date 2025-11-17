@@ -87,9 +87,13 @@ const editProfilePopup = new PopupWithForm("#profile-edit-modal", (formData) => 
 });
 editProfilePopup.setEventListeners();
 
-renderCard({ name: formData.title, link: formData.url });
-addCardValidator.resetValidation();
-addCardPopup.close();
+const addCardPopup = new PopupWithForm("#modal__add-card", (formData) => {
+  cardSection.addItem(renderCard({ name: formData.title, link: formData.url }));
+  addCardForm.reset();
+  addCardValidator.resetValidation();
+  addCardPopup.close();
+});
+
 addCardPopup.setEventListeners();
 
 
