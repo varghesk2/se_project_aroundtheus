@@ -96,5 +96,10 @@ const addCardPopup = new PopupWithForm("#modal__add-card", (formData) => {
 
 addCardPopup.setEventListeners();
 
+const myObj = 
 
-
+fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+  headers: {
+    authorization: "0f60e1c6-c72a-4db2-a372-577372b3a7d9",
+  },
+}).then((res) => res.json());
