@@ -1,24 +1,3 @@
-class Api {
-  constructor(options) {
-    // constructor body
-  }
-
-  getInitialCards() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
-      headers: {
-        authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
-      },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
-  }
-
-  
-}
-
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -29,11 +8,9 @@ const api = new Api({
 
 api
   .getInitialCards()
-  .then((result) => {
-
-  })
+  .then((result) => {})
   .catch((err) => {
-    console.error(err); 
+    console.error(err);
   });
 
 Promise.all();
@@ -51,12 +28,11 @@ export default class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
- 
+  _getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._handleResponse);
   }
-
 
   setUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
@@ -69,7 +45,6 @@ export default class Api {
     }).then(this._handleResponse);
   }
 
-
   setUserPic({ pic }) {
     return fetch(`${this._baseUrl}/users/me/pic`, {
       method: "PATCH",
@@ -78,13 +53,11 @@ export default class Api {
     }).then(this._handleResponse);
   }
 
-  
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     }).then(this._handleResponse);
   }
-
 
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
@@ -93,7 +66,6 @@ export default class Api {
       body: JSON.stringify({ name, link }),
     }).then(this._handleResponse);
   }
-
 
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
@@ -119,4 +91,4 @@ export default class Api {
   getAppData() {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
-
+}
