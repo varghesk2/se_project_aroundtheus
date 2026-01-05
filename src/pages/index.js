@@ -19,7 +19,68 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/web_us_03",
+  headers: {
+    authorization: "YOUR_API_TOKEN_HERE",
+    "Content-Type": "application/json",
+  },
+});
+
+const api = new Api(...);
+const userInfo = new UserInfo(...);
+const cardsSection = new Section(...);
+
+const editProfilePopup = new PopupWithForm(
+  "#profile-edit-modal",
+  (inputData) => {
+    api.setUserInfo({
+      name: inputData.name,
+      about: inputData.description,
+    })
+      .then((userData) => {
+        userInfo.setUserInfo({
+          name: userData.name,
+          description: userData.about,
+        });
+        editProfilePopup.close();
+      })
+      .catch(console.error);
+  }
+);
+
+editProfilePopup.setEventListeners();
+
+const addCardPopup = new PopupWithForm(
+  "#modal__add-card",
+  (inputData) => {
+    api.addCard({
+      name: inputData.title,
+      link: inputData.url,
+    })
+      .then((cardData) => {
+        const cardElement = createCard(cardData);
+        cardsSection.addItem(cardElement);
+        addCardPopup.close();
+      })
+      .catch(console.error);
+  }
+);
+
+addCardPopup.setEventListeners();
+
+api
+  .getAppData()
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo({
+      name: userData.name,
+      description: userData.about,
+    });
+    cardsSection.renderItems(cards);
+  })
+  .catch((err) => console.error(err));
 
 const editProfileValidator = new FormValidator(validationConfig, profileEditModal);
 
@@ -37,6 +98,34 @@ function renderCard(cardData) {
     imagePopup.open(data)
   );
   return card.getView();
+}
+
+function createCard(data) {
+  const card = new Card(
+    data,
+    "#card-template",
+    () => imagePopup.open(data),
+    () => {
+      api
+        .likeCard(data._id)
+        .then((res) => card.updateLikes(res.likes))
+        .catch(console.error);
+    },
+    () => {
+      api
+        .unlikeCard(data._id)
+        .then((res) => card.updateLikes(res.likes))
+        .catch(console.error);
+    },
+    () => {
+      api
+        .deleteCard(data._id)
+        .then(() => card.removeCard())
+        .catch(console.error);
+    }
+  );
+
+  return card.generateCard();
 }
 /* -------------------------------------------------------------------------- */
 /*                               event listeners                              */
@@ -95,6 +184,19 @@ const addCardPopup = new PopupWithForm("#modal__add-card", (formData) => {
 });
 
 addCardPopup.setEventListeners();
+
+const myObj = 
+
+fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+  headers: {
+    authorization: "0f60e1c6-c72a-4db2-a372-577372b3a7d9",
+  },
+}).then((res) => res.json());
+
+
+
+
+
 
 
 
