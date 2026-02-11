@@ -3,8 +3,9 @@ class Card {
     this._title = data.name;
     this._image = data.link;
     this._cardSelector = cardSelector;
-
     this._handleCardClick = handleCardClick;
+    this._likes = data.likes || [];
+    this._cardId = data._id;
   }
 
   _getTemplate() {
@@ -15,7 +16,6 @@ class Card {
 
     return cardElement;
   }
-
 
   _handleLikeIcon() {
     this._likeButton.classList.toggle("card__like-button_active");
@@ -36,6 +36,10 @@ class Card {
     this._element
       .querySelector(".card__delete-button")
       .addEventListener("click", () => this._handleDeleteCard());
+
+      this._likeButton.addEventListener("click", () => {
+        this._handleLikeClick();
+      });
   }
 
   getView() {
@@ -47,6 +51,20 @@ class Card {
     this._setEventListeners();
 
     return this._element;
+  }
+
+  updateLikes(newLikes) {
+    this._likes = newLikes;
+
+    if (this.isLiked()) {
+      this._likeButton.classList.add("card__like-button_active");
+    } else {
+      this._likeButton.classList.remove("card__like-button_active");
+    }
+  }
+
+  isLiked() {
+    return this._likes.some((like) => like._id === this._userId);
   }
 }
 
