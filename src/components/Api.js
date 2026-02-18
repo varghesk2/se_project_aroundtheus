@@ -61,7 +61,7 @@ updateAvatar(avatarUrl) {
   }).then(this._handleResponse);
 }
 
-
   getUserInfo() {
     return
   }
+}
