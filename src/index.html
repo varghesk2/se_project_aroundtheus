@@ -15,37 +15,34 @@
       />
     </header>
     <main class="content">
-      <section class="profile page__section">
-        <img
-         src="<%=require('./images/jacques-cousteau.jpg')%>"
-          alt="Avatar"
-          class="profile__image"
-          id="profile-avatar"
-        />
-        <div class="profile__avatar-container">
-  <img
-    src="<%=require('./images/jacques-cousteau.jpg')%>"
-    alt="Avatar"
-    class="profile__image"
-  />
-  <img
-    src="<%=require('./images/pencil.svg')%>"
-    alt="Edit avatar"
-    class="profile__avatar-edit-icon"
-  />
-</div>
-        <div class="profile__avatar-overlay"></div>
-        <div class="profile__info">
-          <h1 class="profile__title">Jacques Costeau</h1>
-          <button
-            class="profile__edit-button"
-            id="profile__edit-button"
-            type="button"
-          ></button>
-          <p class="profile__description">Explorer</p>
-        </div>
-        <button class="profile__add-button" type="button"></button>
-      </section>
+      
+<section class="profile page__section">
+  <div class="profile__avatar-container">
+    <img
+      src="<%=require('./images/jacques-cousteau.jpg')%>"
+      alt="Avatar"
+      class="profile__image"
+      id="profile-avatar"
+    />
+    <img
+      src="<%=require('./images/pencil.svg')%>"
+      alt="Edit avatar"
+      class="profile__avatar-edit-icon"
+    />
+  </div>
+
+  <div class="profile__info">
+    <h1 class="profile__title">Jacques Cousteau</h1>
+    <button
+      class="profile__edit-button"
+      id="profile__edit-button"
+      type="button"
+    ></button>
+    <p class="profile__description">Explorer</p>
+  </div>
+
+  <button class="profile__add-button" type="button"></button>
+</section>
 
       <section class="cards page__section">
         <ul class="cards__list"></ul>

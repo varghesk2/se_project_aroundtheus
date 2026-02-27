@@ -8,7 +8,6 @@ import {
   profileDescriptionInput,
   profileEditForm,
   addCardForm,
-  profileEditModal,
   profileAddButton,
 } from "../utils/constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -16,16 +15,16 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
+import PopupForDelete from "../components/PopupForDelete.js";
 
 /* -------------------------------------------------------------------------- */
 /*                                   API                                      */
 /* -------------------------------------------------------------------------- */
 
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/web_us_03",
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "YOUR_API_TOKEN_HERE",
+    authorization: "f3dc3505-42e4-4aa4-bf0a-c48d54235c54",
     "Content-Type": "application/json",
   },
 });
@@ -37,24 +36,10 @@ const api = new Api({
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   descriptionSelector: ".profile__description",
-  avatarSelector: ".profile__avatar",
+  avatarSelector: "#profile-avatar",
 });
 
 let currentUserId;
-
-/* -------------------------------------------------------------------------- */
-/*                                IMAGE POPUP                                 */
-/* -------------------------------------------------------------------------- */
-
-const imagePopup = new PopupWithImage("#modal__picture");
-imagePopup.setEventListeners();
-
-/* -------------------------------------------------------------------------- */
-/*                              DELETE POPUP                                  */
-/* -------------------------------------------------------------------------- */
-
-const confirmDeletePopup = new PopupWithConfirmation("#confirm-delete-modal");
-confirmDeletePopup.setEventListeners();
 
 /* -------------------------------------------------------------------------- */
 /*                              CARD SECTION                                  */
@@ -71,10 +56,6 @@ const cardsSection = new Section(
   ".cards__list"
 );
 
-/* -------------------------------------------------------------------------- */
-/*                               CARD CREATION                                */
-/* -------------------------------------------------------------------------- */
-
 function createCard(data) {
   const card = new Card(
     data,
@@ -85,7 +66,7 @@ function createCard(data) {
     () => handleDeleteClick(card, data._id)
   );
 
-  return card.generateCard();
+  return card.getView();
 }
 
 function handleLikeClick(card) {
@@ -121,7 +102,7 @@ function handleDeleteClick(card, cardId) {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                              POPUPS                                         */
+/*                                  POPUPS                                    */
 /* -------------------------------------------------------------------------- */
 
 const editProfilePopup = new PopupWithForm(
@@ -138,13 +119,12 @@ const editProfilePopup = new PopupWithForm(
         userInfo.setUserInfo({
           name: userData.name,
           description: userData.about,
+          avatar: userData.avatar,
         });
         editProfilePopup.close();
       })
       .catch(console.error)
-      .finally(() => {
-        editProfilePopup.renderLoading(false);
-      });
+      .finally(() => editProfilePopup.renderLoading(false));
   }
 );
 
@@ -164,12 +144,16 @@ const addCardPopup = new PopupWithForm("#modal__add-card", (inputData) => {
       addCardPopup.close();
     })
     .catch(console.error)
-    .finally(() => {
-      addCardPopup.renderLoading(false);
-    });
+    .finally(() => addCardPopup.renderLoading(false));
 });
 
 addCardPopup.setEventListeners();
+
+const imagePopup = new PopupWithImage("#modal__picture");
+imagePopup.setEventListeners();
+
+const confirmDeletePopup = new PopupForDelete("#modal__delete");
+confirmDeletePopup.setEventListeners();
 
 /* -------------------------------------------------------------------------- */
 /*                              VALIDATION                                    */
@@ -220,4 +204,3 @@ api
     cardsSection.renderItems(cards);
   })
   .catch(console.error);
-git 

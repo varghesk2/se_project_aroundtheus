@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
 
-export default class PopupWithConfirmation extends Popup {
+export default class PopupForDelete extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._form = this._popup.querySelector(".modal__form");
