@@ -47,10 +47,8 @@ let currentUserId;
 
 const cardsSection = new Section(
   {
-    items: [],
     renderer: (item) => {
-      const cardElement = createCard(item);
-      cardsSection.addItem(cardElement);
+      return createCard(item); 
     },
   },
   ".cards__list"
@@ -69,23 +67,31 @@ function createCard(data) {
   return card.getView();
 }
 
+/* -------------------------------------------------------------------------- */
+/*                              LIKE HANDLER                                  */
+/* -------------------------------------------------------------------------- */
+
 function handleLikeClick(card) {
   if (!card.isLiked()) {
     api
       .likeCard(card.getId())
-      .then((updatedCard) => {
-        card.updateLikes(updatedCard.likes);
+      .then((res) => {
+        card.updateLikes(res.likes); 
       })
       .catch(console.error);
   } else {
     api
       .unlikeCard(card.getId())
-      .then((updatedCard) => {
-        card.updateLikes(updatedCard.likes);
+      .then((res) => {
+        card.updateLikes(res.likes); 
       })
       .catch(console.error);
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/*                              DELETE HANDLER                                */
+/* -------------------------------------------------------------------------- */
 
 function handleDeleteClick(card, cardId) {
   confirmDeletePopup.setSubmitAction(() => {
@@ -112,7 +118,7 @@ const editProfilePopup = new PopupWithForm(
 
     api
       .setUserInfo({
-        name: inputData.name,
+        name: inputData.title, 
         about: inputData.description,
       })
       .then((userData) => {

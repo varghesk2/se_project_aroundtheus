@@ -7,7 +7,6 @@ class Card {
     handleLikeClick,
     handleDeleteClick
   ) {
-    this._data = data;
     this._title = data.name;
     this._image = data.link;
     this._likes = data.likes || [];
@@ -54,18 +53,12 @@ class Card {
   }
 
   _setEventListeners() {
-    this._imageElement.addEventListener("click", () => {
-      this._handleImageClick();
-    });
+    this._imageElement.addEventListener("click", this._handleImageClick);
 
-    this._likeButton.addEventListener("click", () => {
-      this._handleLikeClick();
-    });
+    this._likeButton.addEventListener("click", this._handleLikeClick);
 
     if (this._deleteButton) {
-      this._deleteButton.addEventListener("click", () => {
-        this._handleDeleteClick();
-      });
+      this._deleteButton.addEventListener("click", this._handleDeleteClick);
     }
   }
 
