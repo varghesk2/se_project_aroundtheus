@@ -9,6 +9,8 @@ import {
   profileEditForm,
   addCardForm,
   profileAddButton,
+  avatarEditButton,
+  avatarForm,
 } from "../utils/constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import Section from "../components/Section.js";
@@ -48,10 +50,11 @@ let currentUserId;
 const cardsSection = new Section(
   {
     renderer: (item) => {
-      return createCard(item); 
+      const cardElement = createCard(item);
+      cardsSection.addItem(cardElement);
     },
   },
-  ".cards__list"
+  ".cards__list",
 );
 
 function createCard(data) {
@@ -76,14 +79,14 @@ function handleLikeClick(card) {
     api
       .likeCard(card.getId())
       .then((res) => {
-        card.updateLikes(res.likes); 
+        card.updateLikes(res.likes || []);
       })
       .catch(console.error);
   } else {
     api
       .unlikeCard(card.getId())
       .then((res) => {
-        card.updateLikes(res.likes); 
+        card.updateLikes(res.likes || []);
       })
       .catch(console.error);
   }
@@ -110,6 +113,26 @@ function handleDeleteClick(card, cardId) {
 /* -------------------------------------------------------------------------- */
 /*                                  POPUPS                                    */
 /* -------------------------------------------------------------------------- */
+
+const avatarPopup = new PopupWithForm("#avatar-edit-modal", (inputData) => {
+  avatarPopup.renderLoading(true);
+
+  api
+    .updateAvatar(inputData.avatar)
+    .then((data) => {
+      userInfo.setUserInfo({
+        name: data.name,
+        description: data.about,
+        avatar: data.avatar,
+      });
+
+      avatarPopup.close();
+    })
+    .catch(console.error)
+    .finally(() => avatarPopup.renderLoading(false));
+});
+
+avatarPopup.setEventListeners();
 
 const editProfilePopup = new PopupWithForm(
   "#profile-edit-modal",
@@ -177,6 +200,10 @@ addCardValidator.enableValidation();
 /* -------------------------------------------------------------------------- */
 /*                              EVENT LISTENERS                               */
 /* -------------------------------------------------------------------------- */
+
+avatarEditButton.addEventListener("click", () => {
+  avatarPopup.open();
+});
 
 profileEditButton.addEventListener("click", () => {
   const currentUser = userInfo.getUserInfo();

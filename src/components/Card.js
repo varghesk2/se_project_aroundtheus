@@ -5,12 +5,12 @@ class Card {
     userId,
     handleImageClick,
     handleLikeClick,
-    handleDeleteClick
+    handleDeleteClick,
   ) {
     this._title = data.name;
     this._image = data.link;
     this._likes = data.likes || [];
-    this._ownerId = data.owner?._id;
+    this._ownerId = data.owner && data.owner._id;
     this._cardId = data._id;
 
     this._userId = userId;
@@ -63,7 +63,7 @@ class Card {
   }
 
   updateLikes(likes) {
-    this._likes = likes;
+    this._likes = likes || []
 
     if (this.isLiked()) {
       this._likeButton.classList.add("card__like-button_active");

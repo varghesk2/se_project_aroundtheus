@@ -27,6 +27,9 @@ export const initialCards = [
 ];
 
 
+export const avatarEditButton = document.querySelector(".profile__avatar-edit-icon");
+export const avatarForm = document.forms["avatar-form"];
+
 export const validationConfig = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
