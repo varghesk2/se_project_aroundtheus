@@ -27,7 +27,7 @@ export const initialCards = [
 ];
 
 
-export const avatarEditButton = document.querySelector(".profile__avatar-edit-icon");
+export const avatarEditButton = document.querySelector(".profile__avatar-container");
 export const avatarForm = document.forms["avatar-form"];
 
 export const validationConfig = {
@@ -50,7 +50,7 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 const profileEditForm = profileEditModal.querySelector(".modal__form");
-const addCardForm = document.querySelector("#modal__add-card");
+const addCardForm = document.querySelector("#add-card-form");
 
 export {
   profileEditButton,

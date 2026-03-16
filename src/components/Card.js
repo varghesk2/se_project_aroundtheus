@@ -9,12 +9,12 @@ class Card {
   ) {
     this._title = data.name;
     this._image = data.link;
-    this._likes = data.likes || [];
-    this._ownerId = data.owner && data.owner._id;
+    this._isLiked = data.isLiked || false;
+
+    this._ownerId = data.owner._id || data.owner;
     this._cardId = data._id;
 
     this._userId = userId;
-
     this._cardSelector = cardSelector;
 
     this._handleImageClick = handleImageClick;
@@ -32,6 +32,8 @@ class Card {
   getView() {
     this._element = this._getTemplate();
 
+    console.log("Owner:", this._ownerId, "Current user:", this._userId);
+
     this._imageElement = this._element.querySelector(".card__image");
     this._titleElement = this._element.querySelector(".card__title");
     this._likeButton = this._element.querySelector(".card__like-button");
@@ -45,7 +47,7 @@ class Card {
       this._deleteButton.remove();
     }
 
-    this.updateLikes(this._likes);
+    this.updateLikes(this._isLiked);
 
     this._setEventListeners();
 
@@ -53,27 +55,28 @@ class Card {
   }
 
   _setEventListeners() {
-    this._imageElement.addEventListener("click", this._handleImageClick);
+    this._imageElement.addEventListener("click", () => {
+      this._handleImageClick();
+    });
 
-    this._likeButton.addEventListener("click", this._handleLikeClick);
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeClick();
+    });
 
     if (this._deleteButton) {
-      this._deleteButton.addEventListener("click", this._handleDeleteClick);
+      this._deleteButton.addEventListener("click", () => {
+        this._handleDeleteClick();
+      });
     }
   }
 
-  updateLikes(likes) {
-    this._likes = likes || []
-
-    if (this.isLiked()) {
-      this._likeButton.classList.add("card__like-button_active");
-    } else {
-      this._likeButton.classList.remove("card__like-button_active");
-    }
+  updateLikes(isLiked) {
+    this._isLiked = isLiked;
+    this._likeButton.classList.toggle("card__like-button_active", isLiked);
   }
 
   isLiked() {
-    return this._likes.some((user) => user._id === this._userId);
+    return this._isLiked;
   }
 
   getId() {

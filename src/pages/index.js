@@ -49,22 +49,23 @@ let currentUserId;
 
 const cardsSection = new Section(
   {
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      cardsSection.addItem(cardElement);
-    },
+  renderer: (item) => {
+  return createCard(item);
+},
   },
   ".cards__list",
 );
 
 function createCard(data) {
+  console.log("Card data:", data);
+
   const card = new Card(
     data,
     "#card-template",
     currentUserId,
     () => imagePopup.open({ name: data.name, link: data.link }),
     () => handleLikeClick(card),
-    () => handleDeleteClick(card, data._id)
+    () => handleDeleteClick(card, data._id),
   );
 
   return card.getView();
@@ -78,16 +79,12 @@ function handleLikeClick(card) {
   if (!card.isLiked()) {
     api
       .likeCard(card.getId())
-      .then((res) => {
-        card.updateLikes(res.likes || []);
-      })
+      .then((res) => card.updateLikes(res.isLiked))
       .catch(console.error);
   } else {
     api
       .unlikeCard(card.getId())
-      .then((res) => {
-        card.updateLikes(res.likes || []);
-      })
+      .then((res) => card.updateLikes(res.isLiked))
       .catch(console.error);
   }
 }

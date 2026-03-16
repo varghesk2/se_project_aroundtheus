@@ -185,3 +185,24 @@
             width: 18px;
         }
     }
+
+        @media screen and (max-width: 800px) { 
+    .profile__image{
+      width: 70px;
+      height: 70px;
+    }
+
+    .profile__title{
+      font-size: 18px;
+    }
+
+     .page__section {
+
+     }
+
+     .profile__avatar-container{
+      height: 70px
+     }
+
+        }
+
