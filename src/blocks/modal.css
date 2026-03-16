@@ -269,3 +269,18 @@
   position: relative;
   margin-bottom: 30px;
 } 
+
+#modal__delete .modal__container {
+  width: 430px;
+  min-height: 181px;
+}
+
+#modal__delete .modal__title {
+  width: 358px;
+  margin: 34px auto 38px; 
+}
+
+#modal__delete .modal__button {
+  width: 358px;
+  margin: 0 auto 36px;
+}

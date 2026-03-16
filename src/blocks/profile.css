@@ -82,7 +82,64 @@
         object-fit: cover;
         background-position: center;
         margin-right: 24px;
+         position: relative;
+  cursor: pointer;
+    width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: block;
     }
+
+.profile__avatar-overlay {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.6) url("../images/pencil.svg") center no-repeat;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+}
+
+.profile__avatar-container {
+  position: relative;
+  width: 120px;   
+  height: 120px;  
+  cursor: pointer;
+}
+
+.profile__avatar-edit-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 26px; 
+  height: 26px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; 
+}
+
+.profile__avatar-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile__avatar-container:hover::after {
+  opacity: 1;
+}
+
+.profile__avatar-container:hover .profile__avatar-edit-icon {
+  opacity: 1;
+}
+
+.profile__image:hover + .profile__avatar-overlay {
+  opacity: 1;
+}
 
     @media screen and (max-width: 480px) { 
         .profile{
@@ -128,3 +185,24 @@
             width: 18px;
         }
     }
+
+        @media screen and (max-width: 800px) { 
+    .profile__image{
+      width: 70px;
+      height: 70px;
+    }
+
+    .profile__title{
+      font-size: 18px;
+    }
+
+     .page__section {
+
+     }
+
+     .profile__avatar-container{
+      height: 70px
+     }
+
+        }
+

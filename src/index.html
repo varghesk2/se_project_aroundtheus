@@ -15,23 +15,34 @@
       />
     </header>
     <main class="content">
-      <section class="profile page__section">
-        <img
-         src="<%=require('./images/jacques-cousteau.jpg')%>"
-          alt="Avatar"
-          class="profile__image"
-        />
-        <div class="profile__info">
-          <h1 class="profile__title">Jacques Costeau</h1>
-          <button
-            class="profile__edit-button"
-            id="profile__edit-button"
-            type="button"
-          ></button>
-          <p class="profile__description">Explorer</p>
-        </div>
-        <button class="profile__add-button" type="button"></button>
-      </section>
+      
+<section class="profile page__section">
+  <div class="profile__avatar-container">
+    <img
+      src="<%=require('./images/jacques-cousteau.jpg')%>"
+      alt="Avatar"
+      class="profile__image"
+      id="profile-avatar"
+    />
+    <img
+      src="<%=require('./images/pencil.svg')%>"
+      alt="Edit avatar"
+      class="profile__avatar-edit-icon"
+    />
+  </div>
+
+  <div class="profile__info">
+    <h1 class="profile__title">Jacques Cousteau</h1>
+    <button
+      class="profile__edit-button"
+      id="profile__edit-button"
+      type="button"
+    ></button>
+    <p class="profile__description">Explorer</p>
+  </div>
+
+  <button class="profile__add-button" type="button"></button>
+</section>
 
       <section class="cards page__section">
         <ul class="cards__list"></ul>
@@ -78,6 +89,26 @@
         </form>
       </div>
     </div>
+
+    <div class="modal" id="avatar-edit-modal">
+  <div class="modal__container">
+    <button class="modal__close" type="button"></button>
+    <h3 class="modal__title">Change profile picture</h3>
+    <form class="modal__form" name="avatar-form">
+      <label class="modal__label">
+        <input
+          type="url"
+          name="avatar"
+          class="modal__input"
+          placeholder="Image link"
+          required
+        />
+        <span class="modal__error" id="avatar-input-error"></span>
+      </label>
+      <button class="modal__button" type="submit">Save</button>
+    </form>
+  </div>
+</div>
 
     <div class="modal" id="modal__add-card">
       <div class="modal__container">
@@ -131,6 +162,18 @@
         </div>
       </li>
     </template>
+
+    <div class="modal" id="modal__delete">
+  <div class="modal__container">
+    <button class="modal__close" type="button"></button>
+    <h3 class="modal__title">Are you sure?</h3>
+    <form class="modal__form" id="modal__delete-form">
+      <button class="modal__button" type="submit">Yes</button>
+    </form>
+  </div>
+</div>
+
+
 
   </body>
 </html>
